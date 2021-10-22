@@ -64,6 +64,10 @@
                             <div class="pass_message" style="top:170px">✔ 영문/숫자/특수문자만 허용하며, 특수문자를 포함하여 입력</div>
                         </div>
                     </span>
+
+                    <fieldset class="box3">
+                        <textarea style="height:140px;width:300px;border:1px solid;" cols="80" rows="20" maxlength="155" v-model="introduce" placeholder="자기소개(160자 이내)"></textarea>
+                    </fieldset>
                     
                     
                     <div class="button_box" style="margin-bottom: 15px">
@@ -95,12 +99,13 @@
 <script>
 import axios from 'axios'
 export default {
-    name: 'GameMemberLoginForm',
+    name: 'MemberLoginForm',
     data () {
         return {
             nickname: this.$store.state.yourNickname,
             userId: this.$store.state.yourId,
             password: '',
+            introduce: '',
             //파일전송용
             files: '',
             preview: '',
@@ -123,8 +128,8 @@ export default {
     },
     methods: {
         onSubmit () {
-                const { userId, nickname, password } = this
-                this.$emit('submit', { userId, nickname, password })
+                const { userId, nickname, password, introduce} = this
+                this.$emit('submit', { userId, nickname, password, introduce })
         },
         deleteContent4 () {
             this.toggle4 = false
@@ -266,6 +271,7 @@ export default {
     top: -10px;
     padding: 10px 0 9px;
     margin-left: 50px;
+    margin-bottom: 50px;
     font-size: 12px;
     color: #666;
     line-height: 18px;
@@ -424,5 +430,8 @@ a {
 .profile_change {
     font-size: 9px;
     color: #757575;
+}
+.box3 {
+    border: 0px solid;
 }
 </style>

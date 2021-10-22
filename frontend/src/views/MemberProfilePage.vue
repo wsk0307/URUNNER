@@ -27,8 +27,8 @@ export default {
     },
     methods: {
         onSubmit (payload) {            
-            const { userId, nickname, password } = payload
-            axios.put(`http://localhost:7777/jpamember/${this.$store.state.yourId}`, { userId, nickname, password })
+            const { userId, nickname, password, introduce } = payload
+            axios.put(`http://localhost:7777/jpamember/${this.$store.state.yourId}`, { userId, nickname, password, introduce })
                     .then(res => {
                         if (res.data != "") {
                             alert('변경 성공! - ' + res.data)
