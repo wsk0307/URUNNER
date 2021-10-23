@@ -5,7 +5,7 @@
             <div class="title_image">
                 <img src="@/assets/logo.png" width="100" class="item"></div>
             </div>
-        <member-profile-form @submit="onSubmit"/>
+        <member-profile-form @submit="profileSubmit"/>
         <v-spacer></v-spacer>        
     </div>
 </template>
@@ -26,7 +26,7 @@ export default {
         }
     },
     methods: {
-        onSubmit (payload) {            
+        profileSubmit (payload) {            
             const { userId, nickname, password, introduce } = payload
             axios.put(`http://localhost:7777/jpamember/${this.$store.state.yourId}`, { userId, nickname, password, introduce })
                     .then(res => {
