@@ -39,7 +39,7 @@
       <v-list class="ma-0 pa-0">
         <v-list-item>
           <v-list-item-content class="ma-0 pa-0">
-            <v-list-item-subtitle @click="clickLogoutBtn">
+            <v-list-item-subtitle>
               <p>로그아웃</p>
             </v-list-item-subtitle>
           </v-list-item-content>
@@ -63,11 +63,6 @@ export default {
       ],
     }
   },
-  methods: {
-    clickLogoutBtn() {
-      this.$emit('clickLogoutBtn')
-    }
-  }
 
 }
 </script>

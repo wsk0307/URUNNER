@@ -38,7 +38,7 @@
                           <template v-slot:activator="{ on, attrs }">
                             <v-icon color="primary" v-on="on" v-bind="attrs" class="mr-3">mdi-run-fast</v-icon>
                           </template>
-                          <open-main-menu-logo @clickLogoutBtn="clickLogoutBtn"/>
+                          <open-main-menu-logo/>
                         </v-menu>
                     </div>
                     <div v-else class="d-flex">
@@ -108,9 +108,6 @@ import OpenMainMenuLogo from '../components/headerLoginMenu/OpenMainMenuLogo.vue
           clickLoginBtn() {
             this.$emit('clickLoginBtn')
           },
-          clickLogoutBtn() {
-            this.$emit('clickLogoutBtn')
-          } 
         }
     }
 </script>
