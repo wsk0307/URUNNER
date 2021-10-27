@@ -21,6 +21,7 @@ export default new VueRouter({
           component: () => import ('../views/MemberRegisterPage.vue')
       }, {
           path: '/memberProfile',
+          name: 'memberProfile',
           component: () => import ('../views/MemberProfilePage.vue')
       },
       // 회원 탈퇴
