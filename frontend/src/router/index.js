@@ -13,6 +13,12 @@ import FreeBoardRegisterPage from '@/views/board/free/BoardRegisterPage.vue'
 import FreeBoardReadPage from '@/views/board/free/BoardReadPage.vue'
 import FreeBoardModifyPage from '@/views/board/free/BoardModifyPage.vue'
 
+// 공지 게시판
+import NoticeRegisterPage from '@/views/notice/NoticeRegisterPage.vue'
+import NoticeListPage from '@/views/notice/NoticeListPage.vue'
+import NoticeReadPage from '@/views/notice/NoticeReadPage.vue'
+import NoticeModifyPage from '@/views/notice/NoticeModifyPage.vue'
+
 Vue.use(VueRouter)
 
 export default new VueRouter({
@@ -119,7 +125,42 @@ export default new VueRouter({
         props: {
           default: true
         }
-      }
+      },
+      // 공지 게시판
+      {
+        path: '/notice/create',
+        name: 'NoticeRegisterPage',
+        components: {
+          default: NoticeRegisterPage
+        }
+      },
+      {
+        path: '/notice',
+        name: 'NoticeListPage',
+        components: {
+          default: NoticeListPage
+        }
+      },
+      {
+        path: '/notice/:noticeNo',
+        name: 'NoticeReadPage',
+        components: {
+          default: NoticeReadPage
+        },
+        props: {
+          default: true
+        }
+      },
+      {
+        path: '/notice/:noticeNo/edit',
+        name: 'NoticeModifyPage',
+        components: {
+          default: NoticeModifyPage
+        },
+        props: {
+          default: true
+        }
+      },
   ]
 })
 
