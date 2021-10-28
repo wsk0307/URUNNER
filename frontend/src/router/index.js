@@ -26,7 +26,7 @@ export default new VueRouter({
       },
       // 회원 탈퇴
       {
-          path: '/member/:memberNo',
+          path: '/leave-member',
           name: 'LeaveMemberPage',
           components: {
               default: LeaveMemberPage
@@ -45,7 +45,8 @@ export default new VueRouter({
           props: {
               default: true
           }
-      }, {
+      }, 
+      {
           path: '/mypage',
           component: () => import ("../views/mypage/Mypage.vue"),
           children: [
@@ -67,13 +68,13 @@ export default new VueRouter({
           ]
       },
       {
-        path: '/cart',
-        component: () => import ("../components/enrolment/Cart.vue")
-    },
-    {
-      path: '/orders',
-      component: () => import("../components/enrolment/Orders.vue")
-    }
+          path: '/cart',
+          component: () => import ("../components/enrolment/Cart.vue")
+      },
+      {
+        path: '/orders',
+        component: () => import("../components/enrolment/Orders.vue")
+      }
   ]
 })
 
