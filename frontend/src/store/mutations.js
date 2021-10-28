@@ -6,6 +6,9 @@ import {
     FETCH_BOARD,
     FETCH_COMMENT_LIST,
     FETCH_COMMENT,
+    // 공지사항
+    FETCH_NOTICE_LIST,
+    FETCH_NOTICE,
 
 } from './mutation-types'
 
@@ -29,4 +32,11 @@ export default {
     [FETCH_COMMENT] (state, comment) {
         state.comment = comment
     },
+    // 공지사항
+    [FETCH_NOTICE_LIST] (state, notices) {
+        state.notices = notices;
+    },
+    [FETCH_NOTICE] (state, notice) {
+        state.notice = notice
+    }
 }

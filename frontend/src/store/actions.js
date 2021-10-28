@@ -5,6 +5,9 @@ import {
     FETCH_BOARD_LIST,
     FETCH_BOARD,
     FETCH_COMMENT_LIST,
+    // 공지사항
+    FETCH_NOTICE_LIST,
+    FETCH_NOTICE,
 
 } from './mutation-types'
 
@@ -49,5 +52,18 @@ export default {
                     console.log(res.data[0][0])
                 })
 
+    },
+    // 공지사항
+    fetchNoticeList ({ commit }) {
+        return axios.get('http://localhost:7777/notice/noticeLists')
+                .then((res) => {
+                    commit(FETCH_NOTICE_LIST, res.data)
+                })
+    },
+    fetchNotice ({ commit }, noticeNo) {
+        return axios.get(`http://localhost:7777/notice/${noticeNo}`)
+                .then((res) => {
+                    commit(FETCH_NOTICE, res.data)
+                })
     }
 }
