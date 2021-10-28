@@ -7,6 +7,12 @@ import LeaveMemberPage from '@/views/member/LeaveMemberPage.vue'
 //마이 페이지
 import MyPageStatus from '@/views/mypage/MyPageStatus.vue'
 
+// 게시판
+import FreeBoardListPage from '@/views/board/free/BoardListPage.vue'
+import FreeBoardRegisterPage from '@/views/board/free/BoardRegisterPage.vue'
+import FreeBoardReadPage from '@/views/board/free/BoardReadPage.vue'
+import FreeBoardModifyPage from '@/views/board/free/BoardModifyPage.vue'
+
 Vue.use(VueRouter)
 
 export default new VueRouter({
@@ -79,6 +85,40 @@ export default new VueRouter({
       {
         path: '/orders',
         component: () => import("../components/enrolment/Orders.vue")
+      },
+      {
+        path: '/freeBoard',
+        name: 'FreeBoardListPage',
+        components: {
+          default: FreeBoardListPage
+        }
+      },
+      {
+        path: '/freeBoard/create',
+        name: 'FreeBoardRegisterPage',
+        components: {
+          default: FreeBoardRegisterPage
+        }
+      },
+      {
+        path: '/freeBoard/:boardNo',
+        name: 'FreeBoardReadPage',
+        components: {
+          default: FreeBoardReadPage
+        },
+        props: {
+          default: true
+        }
+      },
+      {
+        path: '/freeBoard/:boardNo/edit',
+        name: 'FreeBoardModifyPage',
+        components: {
+          default: FreeBoardModifyPage
+        },
+        props: {
+          default: true
+        }
       }
   ]
 })
