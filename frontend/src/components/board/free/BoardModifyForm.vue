@@ -1,29 +1,29 @@
 <template>
     <div @submit.prevent="onSubmit">
         <div class="main_box">
-            <!-- 제목 -->
             <div class="title_box">
                 <h4 class="page_title">
                     <v-icon>mdi-exclamation-thick</v-icon>
-                    <span>공지사항</span></h4>
+                    <span>자유게시판</span></h4>
             </div>
-            <!-- 게시글 리스트 -->
             <div class="post_list">
                 <div class="post_card_box">
                     <div class="searching_message_box">
                         <div class="searching_message">
-                            <div style="margin-top:20px;"><input type="text" v-model="title"></div>
-                            <div><p><b class="post_tag">#사료추천</b> / {{board.name}} / {{board.regDate}}</p></div>
+                            <div><p><b class="post_tag">#사료추천</b> / {{board.name}} / {{ $moment(board.regDate).add(-0, 'hours').format('YY-MM-DD HH:mm') }}</p></div>
                         </div>
                     </div>
                 </div>
-                <div class="content_img">
-                    <img :src="ImgRequest()" class="test">
-                </div>
-                <div class="post_content">
-                    <textarea class="post_content" cols="80" rows="20" v-model="content"></textarea>
-                </div>
             </div>
+            <!-- 제목 -->
+            <v-text-field label="제목" v-model="title"></v-text-field>
+            <!-- 게시글 -->
+            <editor :content="content" @content="onSubmit"/>
+            <!-- 이미지 -->
+            <div class="content_img">
+                <img :src="ImgRequest()" class="test">
+            </div>
+
         </div>
         <div class="button_box">
             <router-link :to="{ name: 'FreeBoardListPage' }">
@@ -40,8 +40,14 @@
 </template>
 
 <script>
+
+import Editor from '@/components/board/free/Editor.vue'
+
 export default {
     name: 'BoardModifyForm',
+    components: {
+        Editor
+    },
     props: {
         board: {
             type: Object,
@@ -55,17 +61,18 @@ export default {
         }
     },
     methods: {
-        onSubmit () {
+        onSubmit (data) {
+            this.content = data
             const { title, content } = this
             this.$emit('submit', { title, content })
         },
         ImgRequest() {
-                try {                
-                    return require(`../../../../../Mini/Images/free/${this.board.writer}_${this.board.boardNo}.gif`
-                    )
-                } catch (e) {
-                    return require(`@/assets/logo.png`)
-                }
+            try {
+                return require(`../../../../../backend/khweb/images/free/${this.board.writer}_${this.board.boardNo}.gif`
+                )
+            } catch (e) {
+                return require(`@/assets/logo.png`)
+            }
         }
     },
     created () {
