@@ -92,7 +92,7 @@ export default {
 
                         .then(() => {
                             alert('탈퇴 되었습니다.')
-                            logout()
+                            // logout()
                             this.$router.push({ name: 'MainPage' })
                             
                         })

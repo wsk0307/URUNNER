@@ -7,13 +7,13 @@
                     <v-icon>mdi-exclamation-thick</v-icon>
                     <span>자유게시판</span></h4>
             </div>
-            <!-- 게시글 리스트 -->
+            <!-- 게시글 -->
             <div class="post_list">
                 <div class="post_card_box">
                     <div class="searching_message_box">
                         <div class="searching_message">
                             <div style="margin-top:20px;"><b>{{board.title}}</b></div>
-                            <div><p><b class="post_tag">#TAG</b> / {{board.name}} / {{board.regDate}}</p></div>
+                            <div><p><b class="post_tag">#TAG</b> / {{board.name}} / {{ $moment(board.regDate).add(-0, 'hours').format('YY-MM-DD HH:mm') }}</p></div>
                         </div>
                     </div>
                 </div>
@@ -21,7 +21,7 @@
                     <img :src="ImgRequest()" class="test">
                 </div>
                 <div class="post_content">
-                    <div style="white-space:pre-line;">{{ board.content }}</div>
+                    <div v-html="board.content">{{ board.content }}</div>
                 </div>
             </div>
         </div>        
@@ -184,6 +184,8 @@ export default {
     text-decoration: underline;
 }
 .post_content {
+    margin: 0vw 3vw 0vw 3vw;
+    width: 60vw;
     font-size: 15px;
     color: #757575;
     padding-bottom: 10px;

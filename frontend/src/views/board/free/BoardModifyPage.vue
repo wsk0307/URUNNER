@@ -1,10 +1,11 @@
 <template>
-    <div align="center">
+    <div>
         <v-container>
         <board-modify-form v-if="board" :board="board" @submit="onSubmit"/>
         <p v-else>로딩중 .......</p>
         </v-container>
     </div>
+    
 </template>
 
 <script>
