@@ -39,5 +39,8 @@ export default {
   comments: [],
   comment: null,
   isLogin: true, //임시
-  boardNo: null
+  boardNo: null,
+  //공지사항
+  notices: [],
+  notice: null,
 }
