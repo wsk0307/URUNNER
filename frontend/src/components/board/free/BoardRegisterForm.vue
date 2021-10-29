@@ -1,23 +1,7 @@
 <template>
     <form @submit.prevent="onSubmit">
-        <table>
-            <tr>
-                <td class="message">제목</td>
-                <td>
-                    <input type="text" v-model="title" placeholder="제목을 입력해주세요"></td>
-            </tr>
-            <tr>
-                <td>작성자</td>
-                <td>
-                    <input type="text" v-model="name" readonly></td>
-            </tr>
-            <tr>
-                <td>본문</td>
-                <td>
-                    <textarea style="height:500px" cols="80" rows="20" v-model="content" placeholder="본문을 입력해주세요" wrap="hard"></textarea>
-                </td>
-            </tr>
-        </table>
+        <v-text-field label="제목" v-model="title"></v-text-field>
+        <editor placeholder="Write something …" @content="fusion"/>
         <!-- 이미지 등록 폼 -->
         <div style="margin-bottom: 10px">
             <div class="image-box">
@@ -35,44 +19,41 @@
             <div class="preview_image">
                 <img :src="preview"></div>
         </div>
-        <div class="button_box">
-            <router-link :to="{ name: 'FreeBoardListPage' }">
-                <v-btn>
-                    취소
-                </v-btn>
-            </router-link>
-            <v-btn color="light-blue lighten-1 text center" @click="fusion()" class="item">
-                등록
-            </v-btn>
-            <!-- <div class="button_box" style="margin-top: 0px;">
-                <v-btn color="transparent" class="item" @click="test()" style="color: #29B6F6;">
-                    test
-                </v-btn>
-            </div> -->
-        </div>
-    </form>
+    </form>    
 </template>
 
 <script>
+
+
 import axios from 'axios'
+import Editor from '@/components/board/free/Editor.vue'
+
+
 export default {
     name: 'BoardRegisterForm',
+    components: {
+        Editor
+    },
     data () {
         return {
             //초기값 세팅
             title: '',
             writer: this.$store.state.email,
-            content: '',
             files: '',
             preview: '',
-            name: this.$store.state.name
+            name: this.$store.state.name,
+            content: ''
         }
     },
     methods: {
-        // test() {
-        //     console.log(this.name)
-        //     console.log(this.$store.state.email)
-        // },
+        catchContent(data) {
+            this.content = data
+        },
+        test() {
+            console.log(this.name)
+            console.log(this.$store.state.email)
+            console.log(this.content)
+        },
         handleFileUpload () {
                 this.files = this.$refs.files.files
                 this.preview = URL.createObjectURL(this.files[0])
@@ -107,7 +88,8 @@ export default {
             this.files = '',
             this.preview = ''
         },       
-        boardRegist () {
+        boardRegist (data) {            
+            this.content = data
             const { title, writer, content, name } = this
             axios.post('http://localhost:7777/freeboard/register', { title, writer, content, name } )
                     .then(res => {
@@ -119,11 +101,11 @@ export default {
                         alert(res.response.data.message)
                     })
         },
-        fusion () {
+        fusion (data) {
             setTimeout(() => {
                 this.onsubmit()
                 }, 1000)
-            this.boardRegist()
+            this.boardRegist(data)
         }
     }
 }

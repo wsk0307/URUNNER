@@ -47,7 +47,7 @@
                                     :to="{ name: 'FreeBoardReadPage',
                                                         params: { boardNo: mob.boardNo.toString() } }">
                                 <div class="post_title">{{ mob.title }}</div>
-                                <div class="post_content">{{ mob.content }}</div>
+                                <div class="post_content">{{ replaceHtml(mob.content) }}</div>
                                 <div class="post_reg_date">{{ mob.name }} | {{ $moment(mob.regDate).add(-0, 'hours').format('YY-MM-DD HH:mm') }}</div></router-link>
                             </div>
                         </div>
@@ -94,7 +94,7 @@
                                     :to="{ name: 'FreeBoardReadPage',
                                                         params: { boardNo: mob.boardNo.toString() } }">
                                 <div class="post_title">{{ mob.title }}</div>
-                                <div class="post_content">{{ mob.content }}</div>
+                                <div class="post_content">{{ replaceHtml(mob.content) }}</div>
                                 <div class="post_reg_date">{{ $moment(mob.regDate).add(-0, 'hours').format('YY-MM-DD HH:mm') }}</div></router-link>
                             </div>
                         </div>
@@ -307,6 +307,10 @@ import { mapState, mapActions } from 'vuex'
                 
             },
             ...mapActions(['crawlFind']),
+            replaceHtml(data) {
+                var text = data.replace(/(<([^>]+)>)/ig,"");
+                return text
+            }
         },
         computed: {
             pageCount() {
@@ -343,9 +347,7 @@ import { mapState, mapActions } from 'vuex'
             },
             ...mapState ({
             lists: state => state.lists
-        }),
-            
-
+            }),
         }
     }
 </script>
