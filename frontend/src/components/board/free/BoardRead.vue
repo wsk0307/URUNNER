@@ -7,7 +7,7 @@
                     <v-icon>mdi-exclamation-thick</v-icon>
                     <span>자유게시판</span></h4>
             </div>
-            <!-- 게시글 -->
+            <!-- 게시글 리스트 -->
             <div class="post_list">
                 <div class="post_card_box">
                     <div class="searching_message_box">
@@ -21,7 +21,7 @@
                     <img :src="ImgRequest()" class="test">
                 </div>
                 <div class="post_content">
-                    <div v-html="board.content">{{ board.content }}</div>
+                    <div style="white-space:pre-line;">{{ board.content }}</div>
                 </div>
             </div>
         </div>        
@@ -184,8 +184,6 @@ export default {
     text-decoration: underline;
 }
 .post_content {
-    margin: 0vw 3vw 0vw 3vw;
-    width: 60vw;
     font-size: 15px;
     color: #757575;
     padding-bottom: 10px;
