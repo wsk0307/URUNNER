@@ -30,7 +30,7 @@
                             <div class="adit_comment_area" v-show="temp && mob.layer==0 && mob.commentNo==commentNo">
                                 <tr>
                                     <textarea class="adit_comment_register_box"
-                                    v-model="content" placeholder="댓글을 입력해주세요"></textarea>
+                                    v-model="content2" placeholder="댓글을 입력해주세요"></textarea>
                                 </tr>
                                 <td class="comment_register_btn">
                                     <v-btn color="blue-grey darken-1 white-text" @click="submit">댓글 등록</v-btn>
@@ -98,8 +98,8 @@ export default {
             layer: 0,
             groupNo: null,
             temp: false,
-            commentNo: 0
-
+            commentNo: 0,
+            content2: ''
         }
     },
     props: {
@@ -130,6 +130,10 @@ export default {
     methods: {
         submit () {
             console.log('저장하는 순간 store boardNo 값 : ' + this.$store.state.boardNo)
+            if(this.layer==1) {
+                this.content = this.content2
+            }
+            
             this.boardNo = this.$store.state.boardNo
             this.groupNo = this.commentNo
             const { boardNo, content, writer, name, layer, groupNo } = this
@@ -137,6 +141,7 @@ export default {
                     .then(res => {
                         console.log('댓글등록완료 |' + res.status)
                          this.content = ''
+                         this.content2 = ''
                          let listLength = this.comments.length, // 길이
                          listSize = this.pageSize,
                          page = Math.floor(listLength / listSize);
