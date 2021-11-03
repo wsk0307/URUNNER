@@ -262,11 +262,14 @@ import { mapState } from 'vuex'
         },
         methods: {
             test() {
+                // console.log(this.$store.state.moduleA.name)
+                // console.log('email: ' + this.$store.state.email)
                 console.log('비우기 버튼!')
-                console.log('name: ' + this.$store.state.name)
-                console.log('email: ' + this.$store.state.email)
+                // console.log('name: ' + this.$store.state.name)
+                // console.log('email: ' + this.$store.state.email)
                 sessionStorage.clear();
                 localStorage.clear();
+                
             },
             nextPage() {
                 this.pageNum += 1;
