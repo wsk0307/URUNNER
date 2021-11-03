@@ -86,8 +86,8 @@ export default {
     data () {
         return {
             content: '',
-            writer: this.$store.state.email,
-            name: this.$store.state.name,
+            writer: this.$store.state.moduleA.email,
+            name: this.$store.state.moduleA.name,
             boardNo: '',
             refresh: 1,
             pageNum: 1,

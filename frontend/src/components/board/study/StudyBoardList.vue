@@ -39,7 +39,15 @@
                                     :to="{ name: 'StudyBoardReadPage',
                                                         params: { boardNo: mob.boardNo.toString() } }">
                             <div class="thumbnail">
-                                <v-img :src="ImgRequest(mob.writer, mob.boardNo)" class="thumbnail_img"></v-img>
+                                <v-progress-circular
+                                :rotate="-90"
+                                :size="100"
+                                :width="15"
+                                :value="value2"
+                                color="primary"
+                                >
+                                {{ value }} 
+                                </v-progress-circular>
                             </div></router-link>
                             <div class="post_box">
                                 <div class="post_tag">#TAG</div>
@@ -86,7 +94,15 @@
                                     :to="{ name: 'StudyBoardReadPage',
                                                         params: { boardNo: mob.boardNo.toString() } }">
                             <div class="thumbnail">
-                                <v-img :src="ImgRequest(mob.writer, mob.boardNo)" class="thumbnail_img"></v-img>
+                                <v-progress-circular
+                                :rotate="-90"
+                                :size="100"
+                                :width="15"
+                                :value="value2"
+                                color="primary"
+                                >
+                                {{ value }} 
+                                </v-progress-circular>
                             </div></router-link>
                             <div class="post_box">
                                 <div class="post_tag">#사료추천</div>
@@ -245,8 +261,15 @@ import { mapState } from 'vuex'
                 toggle_exclusive: [],
                 word: '',
                 searchingResult: [],
-                searchinOn: false
+                searchinOn: false,
+
+                interval: {},
+                value: "1 ／ 5",
+                value2: 20
             }
+        },
+        beforeDestroy () {
+        clearInterval(this.interval)
         },
         watch: {
             word(newVal) {       //이런식으로 watch 사용
