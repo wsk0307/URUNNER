@@ -43,10 +43,4 @@ export default {
   //공지사항
   notices: [],
   notice: null,
-
-
-  //커리큘럼 관리
-  sectionList: [],
-  lectureVideoList: [],
-  
 }
