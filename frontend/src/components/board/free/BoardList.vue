@@ -227,7 +227,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 
     export default {
         name: 'BoardList',
@@ -260,13 +260,11 @@ import { mapState, mapActions } from 'vuex'
                 }
             }
         },
-        mounted() {
-            this.crawlFind()
-        },
         methods: {
             test() {
-                console.log(this.$store.state.name)
-                this.$store.state.name = '임시닉네임'
+                console.log('비우기 버튼!')
+                console.log('name: ' + this.$store.state.name)
+                console.log('email: ' + this.$store.state.email)
                 sessionStorage.clear();
                 localStorage.clear();
             },
@@ -294,6 +292,8 @@ import { mapState, mapActions } from 'vuex'
             searching () {
                 var lists = this.boards
                 console.log(this.$store.state)
+                
+
                 this.searchingResult = []
                 for(var i = 0; i < lists.length; i++){
                     if(lists[i].title.includes(this.word || lists[i].content.includes(this.word))){
@@ -311,7 +311,6 @@ import { mapState, mapActions } from 'vuex'
 
                 
             },
-            ...mapActions(['crawlFind']),
             replaceHtml(data) {
                 var text = data.replace(/(<([^>]+)>)/ig,"");
                 return text
