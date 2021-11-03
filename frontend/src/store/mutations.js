@@ -38,12 +38,5 @@ export default {
     },
     [FETCH_NOTICE] (state, notice) {
         state.notice = notice
-    },
-    // 커리큘럼 관리
-    saveSectionList(state, data) {
-      state.sectionList = data;
-    },
-    saveVideoList(state, data) {
-      state.lectureVideoList = data;
-    },
+    }
 }
