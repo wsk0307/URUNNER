@@ -9,6 +9,8 @@ import {
     // 공지사항
     FETCH_NOTICE_LIST,
     FETCH_NOTICE,
+    // 스터디
+    FETCH_STUDY_MEMBER_LIST
 
 } from './mutation-types'
 
@@ -38,5 +40,10 @@ export default {
     },
     [FETCH_NOTICE] (state, notice) {
         state.notice = notice
+    },
+    // 스터디
+    [FETCH_STUDY_MEMBER_LIST] (state, studyMembers) {
+        state.studyMembers = studyMembers
     }
+
 }

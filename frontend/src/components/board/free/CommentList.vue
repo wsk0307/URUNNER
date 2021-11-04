@@ -42,7 +42,7 @@
                                 :timeout="-1" centered outlined>
                                 댓글을 삭제하시겠습니까?
                                     <template v-slot:action="{ attrs }">
-                                        <v-btn color="#424242" text v-bind="attrs" @click="[isNameProblem(mob[7]), snackbar = false]">
+                                        <v-btn color="#424242" text v-bind="attrs" @click="[isNameProblem(mob.commentNo), snackbar = false]">
                                         확인</v-btn>
                                         <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
                                         취소</v-btn>

@@ -43,4 +43,6 @@ export default {
   //공지사항
   notices: [],
   notice: null,
+  //스터디
+  studyMembers: [],
 }

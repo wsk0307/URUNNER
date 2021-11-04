@@ -7,6 +7,8 @@
                     <v-icon>mdi-exclamation-thick</v-icon>
                     <span>자유게시판</span></h4>
             </div>
+            {{ this.$store.state.studyMembers }}
+            {{board.boardNo}}
             <!-- 게시글 -->
             <div class="post_list">
                 <div class="post_card_box">
@@ -24,13 +26,25 @@
                     <div v-html="board.content">{{ board.content }}</div>
                 </div>
             </div>
+
+            <v-btn @click="appl(board.boardNo)">지원하기</v-btn>
         </div>        
     </div>
 </template>
 
 <script>
+
+import axios from 'axios'
+
 export default {
     name: 'StudyBoardRead',
+    data () {
+        return {
+            name: '',
+            email: '',
+            introduce: 'HELLO WORLD!'
+        }
+    },
     props: {
         board: {
             type: Object,
@@ -45,6 +59,19 @@ export default {
             } catch (e) {
                 return require(`@/assets/logo.png`)
             }
+        },
+        appl(data) {
+            this.name = this.$store.state.moduleA.name
+            this.email = this.$store.state.moduleA.email
+            const { name, email, introduce } = this
+            axios.put(`http://localhost:7777/studyboard/apply/${data}`, { name, email, introduce })
+                    .then(res => {
+                        console.log(res)
+                    })
+                    .catch(err => {
+                        alert(err.response.data.message)
+                    })
+
         }
     }
 }

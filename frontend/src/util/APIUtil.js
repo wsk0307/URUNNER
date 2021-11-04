@@ -68,6 +68,8 @@ function logout() {
     Vue.$cookies.remove(ROLES)
     Vue.$cookies.remove(USER_NAME)
     Vue.$cookies.remove(NAME)
+    sessionStorage.clear();
+    localStorage.clear();
 
     EventBus.$emit('isLogin', null);
   }
