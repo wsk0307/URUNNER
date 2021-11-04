@@ -265,6 +265,7 @@ import { mapState } from 'vuex'
                 // console.log(this.$store.state.moduleA.name)
                 // console.log('email: ' + this.$store.state.email)
                 console.log('비우기 버튼!')
+                console.log('this.$store.state.moduleA.email : ' + this.$store.state.moduleA.email)
                 // console.log('name: ' + this.$store.state.name)
                 // console.log('email: ' + this.$store.state.email)
                 sessionStorage.clear();

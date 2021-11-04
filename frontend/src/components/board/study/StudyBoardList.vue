@@ -43,10 +43,10 @@
                                 :rotate="-90"
                                 :size="100"
                                 :width="15"
-                                :value="value2"
+                                :value="mob.currentNum / mob.fit * 100"
                                 color="primary"
                                 >
-                                {{ value }} 
+                                {{ mob.currentNum }} / {{ mob.fit }}
                                 </v-progress-circular>
                             </div></router-link>
                             <div class="post_box">
@@ -112,6 +112,8 @@
                                 <div class="post_title">{{ mob.title }}</div>
                                 <div class="post_content">{{ replaceHtml(mob.content) }}</div>
                                 <div class="post_reg_date">{{ $moment(mob.regDate).add(-0, 'hours').format('YY-MM-DD HH:mm') }}</div></router-link>
+                                <div class="post_title">{{ mob.complete }}</div>
+                                <div class="post_title">{{ mob.fit }}</div>
                             </div>
                         </div>
                     </div>
@@ -264,7 +266,7 @@ import { mapState } from 'vuex'
                 searchinOn: false,
 
                 interval: {},
-                value: "1 ／ 5",
+                value: '',
                 value2: 20
             }
         },

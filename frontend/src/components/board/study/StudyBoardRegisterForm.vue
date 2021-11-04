@@ -2,6 +2,8 @@
     <form @submit.prevent="onSubmit">
         <v-text-field label="제목" v-model="title"></v-text-field>
         <editor placeholder="Write something …" @content="fusion"/>
+        <!-- <v-btn @click="complete = !complete">마감</v-btn> -->
+        <input v-model="fit">
         <!-- 이미지 등록 폼 -->
         <div style="margin-bottom: 10px">
             <div class="image-box">
@@ -42,7 +44,10 @@ export default {
             files: '',
             preview: '',
             name: this.$store.state.moduleA.name,
-            content: ''
+            content: '',
+            complete: false,
+            fit: 1,
+            currentNum: 1
         }
     },
     methods: {
@@ -93,8 +98,8 @@ export default {
         },       
         boardRegist (data) {            
             this.content = data
-            const { title, writer, content, name } = this
-            axios.post('http://localhost:7777/studyboard/register', { title, writer, content, name } )
+            const { title, writer, content, name, complete, fit, currentNum } = this
+            axios.post('http://localhost:7777/studyboard/register', { title, writer, content, name, complete, fit, currentNum } )
                     .then(res => {
                         console.log(res.data)
                         this.$store.state.boardNo = res.data.boardNo.toString()

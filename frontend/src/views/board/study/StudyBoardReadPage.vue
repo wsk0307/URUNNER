@@ -7,11 +7,11 @@
                 <router-link :to="{ name: 'StudyBoardListPage' }">
                         목록
                 </router-link>                
-                <b v-show="board.writer == this.$store.state.moduleA.emaill || this.$store.state.isAuth">
+                <b v-show="board.writer == this.$store.state.moduleA.email || this.$store.state.isAuth">
                     <router-link :to="{ name: 'StudyBoardModifyPage', params: { boardNo } }">
                         |수정
                     </router-link>
-                </b>               
+                </b>                
                 <b v-show="board.writer == this.$store.state.moduleA.email || this.$store.state.isAuth" @click="snackbar = true" class="item">
                     |삭제
                 </b>
@@ -71,7 +71,8 @@ export default {
     },
     computed: {
         ...mapState(['board']),
-        ...mapState(['comments'])
+        ...mapState(['comments']),
+        ...mapState(['studyMembers'])
     },    
     created () {
         this.fetchStudyBoard(this.boardNo)
@@ -85,13 +86,14 @@ export default {
                 })
     },
     mounted () {
-        this.fetchStudyCommentList(this.boardNo)  
+        this.fetchStudyCommentList(this.boardNo),
+        this.fetchStudyMemberList(this.boardNo)
     },
     methods: {
         ...mapActions(['fetchStudyBoard']),
         onDeletePost () {
                         const { boardNo } = this.board
-            axios.delete(`http://localhost:7777/studyfoard/${boardNo}`)
+            axios.delete(`http://localhost:7777/studyboard/${boardNo}`)
                     .then(() => {
                         this.$router.push({ name: 'StudyBoardListPage' })
                     })
@@ -100,6 +102,7 @@ export default {
                     })
         },
         ...mapActions(['fetchStudyCommentList']),
+        ...mapActions(['fetchStudyMemberList']),
         onSubmit (payload) {
             const refresh = payload
             this.refreshCheck = refresh
