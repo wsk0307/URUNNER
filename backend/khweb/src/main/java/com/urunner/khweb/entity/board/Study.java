@@ -46,9 +46,6 @@ public class Study {
     @CreationTimestamp
     private Date regDate;
 
-    @UpdateTimestamp
-    private Date upDate;
-
     public Study(String title, String content, String writer, String name, String complete, Long fit, Long currentNum) {
         this.title = title;
         this.content = content;

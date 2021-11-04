@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-container>
-            <study-board-read v-if="board" :board="board"/>
+            <study-board-read v-if="board" :board="board" @submit="onSubmit"/>
             <p v-else>로딩중 ......</p>
             <v-container class="middle_btn_box">
                 <router-link :to="{ name: 'StudyBoardListPage' }">
@@ -62,10 +62,11 @@ export default {
     watch: {
         refreshCheck(newVal) {
             if(newVal >= 0) {
-                // console.log('refreshCheck값은 : ' + this.refreshCheck)
-            // console.log('댓글 입력 감지')
-            this.fetchStudyCommentList(this.boardNo)
-            this.refreshCheck = 1
+                console.log('refreshCheck값은 : ' + this.refreshCheck)
+                console.log('데이터 변동 감지')
+                this.fetchStudyCommentList(this.boardNo)
+                this.fetchStudyMemberList(this.boardNo)
+                this.refreshCheck = 1
             }
         }
     },
@@ -91,18 +92,18 @@ export default {
     },
     methods: {
         ...mapActions(['fetchStudyBoard']),
-        onDeletePost () {
-                        const { boardNo } = this.board
-            axios.delete(`http://localhost:7777/studyboard/${boardNo}`)
-                    .then(() => {
-                        this.$router.push({ name: 'StudyBoardListPage' })
-                    })
-                    .catch(err => {
-                        alert(err.response.data.message)                                                
-                    })
-        },
         ...mapActions(['fetchStudyCommentList']),
         ...mapActions(['fetchStudyMemberList']),
+        onDeletePost () {
+                        const { boardNo } = this.board
+                        axios.delete(`http://localhost:7777/studyboard/${boardNo}`)
+                        .then(() => {
+                            this.$router.push({ name: 'StudyBoardListPage' })
+                        })
+                        .catch(err => {
+                            alert(err.response.data.message)
+                        })
+        },
         onSubmit (payload) {
             const refresh = payload
             this.refreshCheck = refresh
