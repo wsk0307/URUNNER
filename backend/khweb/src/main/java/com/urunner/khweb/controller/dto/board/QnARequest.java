@@ -1,4 +1,4 @@
-package com.urunner.khweb.controller.dto;
+package com.urunner.khweb.controller.dto.board;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,4 +20,5 @@ public class QnARequest {
     private Long views;
     private Long comments;
     private String tags;
+    private String notice;
 }
