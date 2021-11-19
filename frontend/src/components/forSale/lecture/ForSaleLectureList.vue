@@ -359,11 +359,15 @@ export default {
 .mx-auto0.v-card.v-sheet.theme--light {
     width: 200px;
 }
+/* 사이드바 차일드 박스 */
 .v-list-item.theme--light {
     padding-left:30px!important;
     border-top: 1px solid #EEEEEE;
     background-color: white;
     font-weight: 500;
+}
+.v-list-item.theme--light:hover {
+    background-color: #FAFAFA;
 }
 .v-list-group.v-list-group--no-action {
     background-color: #f8f8f8 !important;
@@ -888,6 +892,7 @@ input:focus {
 .v-list-item__title {
     font-size: 0.9rem;
 }
+/* 사이드바 차일드 텍스트 */
 .v-list-item__title.child {
     font-size: 0.8rem !important;
 }
