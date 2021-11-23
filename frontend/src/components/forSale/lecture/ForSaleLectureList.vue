@@ -205,7 +205,7 @@
             <v-row justify="center">
                 <v-dialog v-model="dialog" scrollable max-width="300px">
                 <template v-slot:activator="{ on, attrs }">
-                    <v-btn color="primary" fab dark v-bind="attrs" v-on="on" fixed right style="top:650px;left:410px;" class="hidden-md-and-up">
+                    <v-btn color="primary" fab dark v-bind="attrs" v-on="on" fixed right style="top:84vh;left:87vw;" class="hidden-md-and-up">
                         <v-icon dark>mdi-plus</v-icon>
                     </v-btn>
                 </template>
@@ -792,6 +792,8 @@ p {
     align-items: center;
 }
 .forLine {
+    min-width: 560px;
+    margin-left:10px;
     height: 40px !important;
     border-top: 1px solid #BDBDBD;
     border-bottom: 1px solid #BDBDBD;
@@ -842,10 +844,8 @@ input:focus {
 }
 .main_box {
     justify-content: center;
-    flex-direction: column;
-    
+    flex-direction: column;    
     color: #424242;
-    max-width:900px;
 }
 .temp2 {
     font-size: 15px;
