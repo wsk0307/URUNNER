@@ -36,7 +36,6 @@ export default {
       cart: null,
       currentPage: 0,
       lectureCount: 0,
-
     }
   },
   computed: {
