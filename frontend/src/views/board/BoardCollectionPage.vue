@@ -37,7 +37,7 @@
         </div>
         <!-- 모바일 사이즈 때 나타나는 글쓰기 버튼 -->
         <router-link :to="{ name: selectRegister() }">
-            <v-btn fab dark color="primary" class="hidden-md-and-up" fixed right style="top:80vh;">
+            <v-btn v-if="isAdmin()" fab dark color="primary" class="hidden-md-and-up" fixed right style="top:80vh;">
                 <v-icon dark>mdi-plus</v-icon>
             </v-btn>
         </router-link>
@@ -113,6 +113,13 @@ export default {
                     return 'StudyBoardRegisterPage'
                 default:
                     break;
+            }
+        },
+        isAdmin() {
+            if(this.$cookies.get('ROLES') == null) {
+                return false
+            } else {
+                return true
             }
         }
     }
