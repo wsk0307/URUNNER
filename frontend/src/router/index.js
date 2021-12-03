@@ -177,6 +177,7 @@ export default new VueRouter({
       }, 
       {
           path: '/mypage',
+          name: 'Mypage',
           component: () => import ("../views/mypage/Mypage.vue"),
           beforeEnter: ( to, from, next ) => isAuthenticated( to, from ,next ),
           children: [
@@ -216,6 +217,7 @@ export default new VueRouter({
               component: () => import("../views/board/inq/InqBoardListForUserPage.vue")
             },            
             {
+              name:'MyLatestPage',
               path: '/latest',
               component: () => import("../views/mypage/MyLatestPage.vue")
             },
@@ -526,7 +528,7 @@ export default new VueRouter({
 
 
 import axios from "axios";
-
+import { logout } from '../util/APIUtil'
 
 // axios.defaults.headers.common['Authorization'] = Vue.$cookies.get("ACCESS_TOKEN");
 
@@ -537,14 +539,11 @@ import axios from "axios";
 axios.interceptors.request.use(function (config) {
     // Do something before request is sent
 
-    // if(!Vue.$cookies.get("ACCESS_TOKEN")) {
-    //   return Promise.reject("No access token set")
-    // }
-    if(!Vue.$cookies.get("ACCESS_TOKEN")) {
-      config.headers.Authorization = Vue.$cookies.get("REFRESH_TOKEN");
-    }else{
-      config.headers.Authorization = Vue.$cookies.get("ACCESS_TOKEN");
+    if(Vue.$cookies.get("ACCESS_TOKEN") == null) {
+      logout
     }
+    
+    config.headers.Authorization = Vue.$cookies.get("ACCESS_TOKEN");
 
     return config;
   }, function (error) {
@@ -557,6 +556,10 @@ axios.interceptors.request.use(function (config) {
 
 // 응답받기전 전처리
 axios.interceptors.response.use(function (response) {
+    if(Vue.$cookies.get("ACCESS_TOKEN") == null) {
+      logout
+    }
+
 
     // Do something with response data
     return response;
